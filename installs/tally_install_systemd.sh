@@ -22,10 +22,10 @@ cd - > /dev/null
 
 if yn_prompt "Do you want to build tally?"; then
     cp ../tally/target/release/tally /usr/local/bin/tally
-    chmod +x /usr/local/bin/tally 
 else 
-    cp tally 
+    cp ../bins/tally /usr/local/bin/tally
 fi
+chmod +x /usr/local/bin/tally 
 
 echo "[+] creating tally systemd service..."
 cat <<EOF | sudo tee /etc/systemd/system/tally.service > /dev/null
