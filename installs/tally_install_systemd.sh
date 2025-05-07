@@ -7,7 +7,7 @@ cd ../tally
 make
 cd - > /dev/null
 
-cp ../tally/release/tally /usr/local/bin/tally
+cp ../tally/target/release/tally /usr/local/bin/tally
 chmod +x /usr/local/bin/tally 
 
 echo "[+] creating tally systemd service..."
