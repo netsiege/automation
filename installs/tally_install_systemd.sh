@@ -1,5 +1,18 @@
 #!/bin/sh 
 
+yn_prompt() {
+    printf "%s [y/n]: " "$1"
+    while :; do
+        read ans
+        case "$ans" in
+            [Yy]) return 0 ;;
+            [Nn]) return 1 ;;
+            *) printf "Please answer y or n: " ;;
+        esac
+    done
+}
+
+
 echo "[+] tally installing..."
 
 echo "[+] building tally..."
@@ -7,8 +20,12 @@ cd ../tally
 make
 cd - > /dev/null
 
-cp ../tally/target/release/tally /usr/local/bin/tally
-chmod +x /usr/local/bin/tally 
+if yn_prompt "Do you want to build tally?"; then
+    cp ../tally/target/release/tally /usr/local/bin/tally
+    chmod +x /usr/local/bin/tally 
+else 
+    cp tally 
+fi
 
 echo "[+] creating tally systemd service..."
 cat <<EOF | sudo tee /etc/systemd/system/tally.service > /dev/null
