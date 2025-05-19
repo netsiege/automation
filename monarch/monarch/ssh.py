@@ -84,7 +84,7 @@ def get_ssh_client(host):
 
 def get_script(name):
     matches = []
-    for root, dirs, files in os.walk("/opt/bin/"):
+    for root, dirs, files in os.walk("scripts/"):
         for file in files:
             path = os.path.join(root, file)
             if name == file:
